@@ -1,0 +1,19 @@
+{
+  "id": "agent.vue-app",
+  "name": "Vue App Agent",
+  "description": "Scaffolds and updates Vue application projects.",
+  "supportedActions": [
+    "scaffold",
+    "build",
+    "test"
+  ],
+  "toolIds": [
+    "tool.api"
+  ],
+  "handoffs": [
+    {
+      "toAgentId": "agent.code-review",
+      "reason": "Run review checks after implementation changes."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "agent.node-api",
+  "name": "Node JS/TS API Agent",
+  "description": "Builds and maintains Node.js/TypeScript API services.",
+  "supportedActions": [
+    "scaffold",
+    "run",
+    "test"
+  ],
+  "toolIds": [
+    "tool.api",
+    "tool.sql"
+  ],
+  "handoffs": [
+    {
+      "toAgentId": "agent.code-review",
+      "reason": "Run review checks after API changes."
+    }
+  ]
+}

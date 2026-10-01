@@ -1,0 +1,10 @@
+{
+  "id": "tool.api",
+  "name": "API Tools",
+  "description": "Utilities for endpoint testing and contract validation.",
+  "capabilities": [
+    "send-request",
+    "validate-status-codes",
+    "validate-openapi"
+  ]
+}

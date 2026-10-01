@@ -1,0 +1,31 @@
+{
+  "id": "agent.code-review",
+  "name": "Code Review Agent",
+  "description": "Reviews code quality, style, and basic security checks.",
+  "supportedActions": [
+    "analyze",
+    "report"
+  ],
+  "toolIds": [
+    "tool.api",
+    "tool.sql"
+  ],
+  "handoffs": [
+    {
+      "toAgentId": "agent.vue-app",
+      "reason": "Route frontend findings to Vue agent."
+    },
+    {
+      "toAgentId": "agent.angular-app",
+      "reason": "Route frontend findings to Angular agent."
+    },
+    {
+      "toAgentId": "agent.winform-app",
+      "reason": "Route desktop findings to WinForm agent."
+    },
+    {
+      "toAgentId": "agent.node-api",
+      "reason": "Route backend findings to Node API agent."
+    }
+  ]
+}

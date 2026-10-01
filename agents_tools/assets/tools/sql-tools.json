@@ -1,0 +1,10 @@
+{
+  "id": "tool.sql",
+  "name": "SQL Tools",
+  "description": "Utilities for database connectivity, queries, and migrations.",
+  "capabilities": [
+    "test-connection",
+    "run-query",
+    "apply-migration"
+  ]
+}

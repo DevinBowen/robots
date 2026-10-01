@@ -68,6 +68,17 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // buttonInstall
+            // 
+            buttonInstall = new Button();
+            buttonInstall.Location = new Point(29, 160);
+            buttonInstall.Name = "buttonInstall";
+            buttonInstall.Size = new Size(201, 40);
+            buttonInstall.TabIndex = 2;
+            buttonInstall.Text = "Install";
+            buttonInstall.UseVisualStyleBackColor = true;
+            buttonInstall.Click += buttonInstall_Click;
+            // 
             // button1
             // 
             button1.Location = new Point(29, 12);
@@ -92,6 +103,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            // Add new control to panel1
+            splitContainer1.Panel1.Controls.Add(buttonInstall);
             Name = "Main";
             Text = "Main";
             splitContainer1.Panel1.ResumeLayout(false);
@@ -106,6 +119,7 @@
         private SplitContainer splitContainer1;
         private Button button1;
         private Button button2;
+        private Button buttonInstall;
         private ListBox listBox1;
     }
 }

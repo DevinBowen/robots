@@ -1,0 +1,19 @@
+{
+  "id": "agent.winform-app",
+  "name": "WinForm App Agent",
+  "description": "Creates and maintains .NET WinForms desktop apps.",
+  "supportedActions": [
+    "scaffold",
+    "build",
+    "package"
+  ],
+  "toolIds": [
+    "tool.sql"
+  ],
+  "handoffs": [
+    {
+      "toAgentId": "agent.code-review",
+      "reason": "Run review checks after desktop updates."
+    }
+  ]
+}
