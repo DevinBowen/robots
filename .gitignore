@@ -1,0 +1,323 @@
+# ============================================================
+
+# .NET / Visual Studio .gitignore
+
+# Solution-level .gitignore for .NET 10 WinForms
+
+# ============================================================
+
+# ------------------------------------------------------------
+
+# Build output
+
+# ------------------------------------------------------------
+
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+ARM/
+ARM64/
+
+# Build logs
+
+*.log
+*.tlog
+*.lastbuildstate
+
+# ------------------------------------------------------------
+
+# Visual Studio
+
+# ------------------------------------------------------------
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio profiling
+
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Visual Studio cache
+
+.vsconfig
+
+# ------------------------------------------------------------
+
+# Visual Studio Code
+
+# ------------------------------------------------------------
+
+.vscode/
+
+# Keep workspace settings that are useful to the project if desired.
+
+# Uncomment if you want to commit specific VS Code settings:
+
+# !.vscode/settings.json
+
+# !.vscode/tasks.json
+
+# !.vscode/launch.json
+
+# ------------------------------------------------------------
+
+# JetBrains Rider / ReSharper
+
+# ------------------------------------------------------------
+
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# ------------------------------------------------------------
+
+# NuGet
+
+# ------------------------------------------------------------
+
+*.nupkg
+*.snupkg
+*.nuget.g.props
+*.nuget.g.targets
+
+# NuGet package cache / local package folders
+
+packages/
+.nuget/
+
+# ------------------------------------------------------------
+
+# .NET generated files
+
+# ------------------------------------------------------------
+
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Generated MSBuild files
+
+*.AssemblyAttributes.cs
+*.AssemblyInfo.cs
+*.g.cs
+*.g.i.cs
+
+# ------------------------------------------------------------
+
+# WinForms generated files
+
+# ------------------------------------------------------------
+
+# Do NOT ignore *.Designer.cs or *.resx globally.
+
+# They are source files and should normally be committed.
+
+# WinForms designer backup files
+
+*.cs.bak
+*.resx.bak
+
+# ------------------------------------------------------------
+
+# Test / coverage output
+
+# ------------------------------------------------------------
+
+TestResults/
+test-results/
+coverage/
+*.coverage
+*.coveragexml
+coverage*.xml
+
+# ------------------------------------------------------------
+
+# Code coverage / analysis
+
+# ------------------------------------------------------------
+
+.opencover/
+*.opencover.xml
+
+# ------------------------------------------------------------
+
+# Database / local development files
+
+# ------------------------------------------------------------
+
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ------------------------------------------------------------
+
+# Local environment / secrets
+
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+# User-specific application settings
+
+appsettings.Local.json
+appsettings.Development.Local.json
+
+# Local secrets
+
+secrets.json
+secrets.local.json
+
+# ------------------------------------------------------------
+
+# Publish output
+
+# ------------------------------------------------------------
+
+publish/
+Publish/
+*.publishsettings
+
+# ------------------------------------------------------------
+
+# Installer / packaging output
+
+# ------------------------------------------------------------
+
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+
+# ------------------------------------------------------------
+
+# Temporary files
+
+# ------------------------------------------------------------
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Windows temporary files
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ------------------------------------------------------------
+
+# OS files
+
+# ------------------------------------------------------------
+
+.DS_Store
+
+# ------------------------------------------------------------
+
+# Crash dumps
+
+# ------------------------------------------------------------
+
+*.dmp
+
+# ------------------------------------------------------------
+
+# Generated documentation
+
+# ------------------------------------------------------------
+
+*.nupkg
+*.snupkg
+
+# ------------------------------------------------------------
+
+# Azure / deployment local files
+
+# ------------------------------------------------------------
+
+.azure/
+.azure-dev/
+
+# ------------------------------------------------------------
+
+# Local tool state
+
+# ------------------------------------------------------------
+
+.dotnet/
+dotnet-tools.json.user
+
+# ------------------------------------------------------------
+
+# User-specific MSBuild files
+
+# ------------------------------------------------------------
+
+*.csproj.user
+*.vbproj.user
+*.vcxproj.user
+
+# ------------------------------------------------------------
+
+# Generated WebAssembly / Blazor artifacts
+
+# (harmless if solution later gains these projects)
+
+# ------------------------------------------------------------
+
+wwwroot/_framework/
+
+# ------------------------------------------------------------
+
+# Microsoft.CodeAnalysis / Roslyn generated files
+
+# ------------------------------------------------------------
+
+Generated/
+generated/
+
+# ------------------------------------------------------------
+
+# Local launch/debug configuration
+
+# ------------------------------------------------------------
+
+launchSettings.local.json
+
+# ------------------------------------------------------------
+
+# Keep important source/configuration files tracked
+
+# ------------------------------------------------------------
+
+!.gitignore
+!.editorconfig
+!.gitattributes
+!*.cs
+!*.csproj
+!*.sln
+!*.slnx
+!*.resx
+!*.json
+!*.xml
+!*.config
+!*.xaml
+!*.settings
