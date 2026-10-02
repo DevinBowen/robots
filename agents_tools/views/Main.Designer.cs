@@ -32,6 +32,7 @@
             button2 = new Button();
             button1 = new Button();
             listBox1 = new ListBox();
+            buttonInstall = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -49,6 +50,7 @@
             splitContainer1.Panel1.BackColor = SystemColors.Menu;
             splitContainer1.Panel1.Controls.Add(button2);
             splitContainer1.Panel1.Controls.Add(button1);
+            splitContainer1.Panel1.Controls.Add(buttonInstall);
             // 
             // splitContainer1.Panel2
             // 
@@ -68,17 +70,6 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // buttonInstall
-            // 
-            buttonInstall = new Button();
-            buttonInstall.Location = new Point(29, 160);
-            buttonInstall.Name = "buttonInstall";
-            buttonInstall.Size = new Size(201, 40);
-            buttonInstall.TabIndex = 2;
-            buttonInstall.Text = "Install";
-            buttonInstall.UseVisualStyleBackColor = true;
-            buttonInstall.Click += buttonInstall_Click;
-            // 
             // button1
             // 
             button1.Location = new Point(29, 12);
@@ -97,14 +88,47 @@
             listBox1.Size = new Size(503, 424);
             listBox1.TabIndex = 0;
             // 
+            // buttonInstall
+            // 
+            buttonInstall.BackColor = SystemColors.ButtonFace;
+            buttonInstall.Location = new Point(29, 396);
+            buttonInstall.Name = "buttonInstall";
+            buttonInstall.Size = new Size(201, 40);
+            buttonInstall.TabIndex = 2;
+            buttonInstall.Text = "Install";
+            buttonInstall.UseVisualStyleBackColor = false;
+            buttonInstall.Click += buttonInstall_Click;
+            // 
+            // progressBar1
+            // 
+            progressBar1 = new ProgressBar();
+            progressBar1.Location = new Point(29, 350);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(201, 24);
+            progressBar1.TabIndex = 3;
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 100;
+            progressBar1.Value = 0;
+            // 
+            // labelStatus
+            // 
+            labelStatus = new Label();
+            labelStatus.Location = new Point(29, 326);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(201, 18);
+            labelStatus.TabIndex = 4;
+            labelStatus.Text = "Ready";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
-            // Add new control to panel1
-            splitContainer1.Panel1.Controls.Add(buttonInstall);
+            // Add progress controls to left panel
+            splitContainer1.Panel1.Controls.Add(progressBar1);
+            splitContainer1.Panel1.Controls.Add(labelStatus);
             Name = "Main";
             Text = "Main";
             splitContainer1.Panel1.ResumeLayout(false);
@@ -121,5 +145,7 @@
         private Button button2;
         private Button buttonInstall;
         private ListBox listBox1;
+        private ProgressBar progressBar1;
+        private Label labelStatus;
     }
 }

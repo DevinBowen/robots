@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using agents_tools.controllers;
 using agents_tools.models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace agents_tools.views
 {
@@ -55,7 +57,7 @@ namespace agents_tools.views
             _currentDisplayed.AddRange(_tools.Select(t => Tuple.Create("tool", t.Id)));
         }
 
-        private void buttonInstall_Click(object sender, EventArgs e)
+        private async void buttonInstall_Click(object sender, EventArgs e)
         {
             var index = listBox1.SelectedIndex;
             if (index < 0 || index >= _currentDisplayed.Count)
@@ -67,49 +69,70 @@ namespace agents_tools.views
             var itemType = _currentDisplayed[index].Item1;
             var itemId = _currentDisplayed[index].Item2;
 
-            if (string.Equals(itemType, "agent", StringComparison.OrdinalIgnoreCase))
+            buttonInstall.Enabled = false;
+            progressBar1.Value = 0;
+            labelStatus.Text = "Installing...";
+
+            var cts = new CancellationTokenSource();
+
+            var progress = new Progress<InstallProgress>(p =>
             {
-                var agent = _agents.FirstOrDefault(a => string.Equals(a.Id, itemId, StringComparison.OrdinalIgnoreCase));
-                if (agent == null)
+                try
                 {
-                    MessageBox.Show(this, "Agent not found.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    var pct = Math.Min(100, Math.Max(0, p.Percentage));
+                    progressBar1.Value = pct;
+                    labelStatus.Text = $"{pct}% ({p.BytesWritten}/{p.TotalBytes} bytes)";
                 }
-
-                _installService.AppendInstalledItem(new InstalledItem
+                catch
                 {
-                    AssetId = agent.Id,
-                    AssetType = "agent",
-                    InstalledAt = DateTime.UtcNow,
-                    SourcePath = agent.SourcePath
-                });
+                    // ignore UI update errors
+                }
+            });
 
-                MessageBox.Show(this, "Agent '" + agent.Name + "' recorded as installed.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (string.Equals(itemType, "tool", StringComparison.OrdinalIgnoreCase))
+            try
             {
-                var tool = _tools.FirstOrDefault(t => string.Equals(t.Id, itemId, StringComparison.OrdinalIgnoreCase));
-                if (tool == null)
+                if (string.Equals(itemType, "agent", StringComparison.OrdinalIgnoreCase))
                 {
-                    MessageBox.Show(this, "Tool not found.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    var agent = _agents.FirstOrDefault(a => string.Equals(a.Id, itemId, StringComparison.OrdinalIgnoreCase));
+                    if (agent == null)
+                    {
+                        MessageBox.Show(this, "Agent not found.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    await _installService.InstallAgentAsync(agent, progress, cts.Token).ConfigureAwait(false);
+                    //this.Invoke(() => MessageBox.Show(this, $"Agent '{agent.Name}' installed.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Information));
                 }
-
-                _installService.AppendInstalledItem(new InstalledItem
+                else if (string.Equals(itemType, "tool", StringComparison.OrdinalIgnoreCase))
                 {
-                    AssetId = tool.Id,
-                    AssetType = "tool",
-                    InstalledAt = DateTime.UtcNow,
-                    SourcePath = tool.SourcePath
-                });
+                    var tool = _tools.FirstOrDefault(t => string.Equals(t.Id, itemId, StringComparison.OrdinalIgnoreCase));
+                    if (tool == null)
+                    {
+                        MessageBox.Show(this, "Tool not found.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
-                MessageBox.Show(this, "Tool '" + tool.Name + "' recorded as installed.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                    await _installService.InstallToolAsync(tool, progress, cts.Token).ConfigureAwait(false);
+                    //this.Invoke(() => MessageBox.Show(this, $"Tool '{tool.Name}' installed.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Information));
+                }
+                else
+                {
+                    MessageBox.Show(this, "Unknown asset type.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-
-            MessageBox.Show(this, "Unknown asset type.", "Install", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            catch (Exception ex)
+            {
+                this.Invoke(() => MessageBox.Show(this, "Install failed: " + ex.Message, "Install", MessageBoxButtons.OK, MessageBoxIcon.Error));
+            }
+            finally
+            {
+                this.Invoke(() =>
+                {
+                    progressBar1.Value = 100;
+                    labelStatus.Text = "Done";
+                    buttonInstall.Enabled = true;
+                });
+            }
         }
 
         private void Render(string[] lines)
