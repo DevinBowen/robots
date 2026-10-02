@@ -135,6 +135,32 @@ namespace agents_tools.views
             }
         }
 
+        private void SetActiveCategory(Button active, string header)
+        {
+            foreach (var b in new[] { button1, button2 })
+            {
+                var isActive = b == active;
+                b.BackColor = isActive ? Color.FromArgb(62, 68, 82) : Color.FromArgb(32, 36, 44);
+                b.ForeColor = isActive ? Color.White : Color.FromArgb(220, 224, 232);
+            }
+            labelHeader.Text = header;
+        }
+
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+            var selected = (e.State & DrawItemState.Selected) != 0;
+            using (var back = new SolidBrush(selected ? Color.FromArgb(222, 236, 249) : Color.White))
+            using (var fore = new SolidBrush(selected ? Color.FromArgb(0, 84, 150) : Color.FromArgb(40, 44, 52)))
+            using (var line = new Pen(Color.FromArgb(238, 240, 244)))
+            {
+                e.Graphics.FillRectangle(back, e.Bounds);
+                var format = new StringFormat { LineAlignment = StringAlignment.Center, Trimming = StringTrimming.EllipsisCharacter, FormatFlags = StringFormatFlags.NoWrap };
+                var textBounds = new Rectangle(e.Bounds.X + 12, e.Bounds.Y, e.Bounds.Width - 24, e.Bounds.Height);
+                e.Graphics.DrawString(listBox1.Items[e.Index].ToString(), e.Font, fore, textBounds, format);
+                e.Graphics.DrawLine(line, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
+            }
+        }
         private void Render(string[] lines)
         {
             listBox1.BeginUpdate();
