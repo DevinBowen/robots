@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="agents_tools/agents_tools.csproj" />
   <Project Path="McpServer/McpServer.csproj" Id="856e20cf-c67b-4ea0-8000-9fa1b7e4a78d" />
+  <Project Path="Rag/Rag.csproj" />
 </Solution>
