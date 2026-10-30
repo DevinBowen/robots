@@ -76,7 +76,7 @@
             labelTitle.Padding = new Padding(20, 0, 0, 0);
             labelTitle.Size = new Size(250, 72);
             labelTitle.TabIndex = 0;
-            labelTitle.Text = "Agents && Tools";
+            labelTitle.Text = "Robots";
             labelTitle.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // button1
@@ -110,6 +110,7 @@
             labelStatus.Size = new Size(210, 20);
             labelStatus.TabIndex = 0;
             labelStatus.Text = "Ready";
+            labelStatus.AccessibleName = "Install status";
             // 
             // progressBar1
             // 
@@ -119,6 +120,7 @@
             progressBar1.Size = new Size(210, 6);
             progressBar1.Style = ProgressBarStyle.Continuous;
             progressBar1.TabIndex = 1;
+            progressBar1.AccessibleName = "Install progress";
             // 
             // buttonInstall
             // 
@@ -137,6 +139,8 @@
             buttonInstall.TabIndex = 2;
             buttonInstall.Text = "Install Selected";
             buttonInstall.UseVisualStyleBackColor = false;
+            buttonInstall.AccessibleName = "Install selected item";
+            buttonInstall.AccessibleDescription = "Install the currently selected agent or tool.";
             buttonInstall.Click += buttonInstall_Click;
             // 
             // labelHeader
@@ -162,7 +166,7 @@
             listBox1.ItemHeight = 40;
             listBox1.Name = "listBox1";
             listBox1.TabIndex = 0;
-            listBox1.DrawItem += listBox1_DrawItem;
+            listBox1.AccessibleName = "Legacy catalog list";
             // 
             // Main
             // 
@@ -174,7 +178,7 @@
             MinimumSize = new Size(640, 440);
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Agents & Tools";
+            Text = "Robots";
             panelInstall.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -201,6 +205,7 @@
             b.Text = text;
             b.TextAlign = ContentAlignment.MiddleLeft;
             b.UseVisualStyleBackColor = false;
+            b.AccessibleName = text;
         }
         #endregion
 
